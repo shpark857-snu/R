@@ -39,7 +39,7 @@ The 12 finished-mass inputs are stainless steel 186 g, brass 20.25 g, copper 15 
 
 ## 4. Background data and matching decisions
 
-No background dataset mapping or data manifest exists in the repository. Database and release, dataset names, UUIDs and versions, geography and year, reference flows and amounts, source URLs, retrieval dates, and file hashes are unknown for every input. No search queries, alternatives, accepted or rejected matches, proxy rationales, supplier links, or external dependencies are documented.
+The [data manifest](data/data-manifest.csv) records the downloaded classroom BOM. The [mapping table](data/mapping-decisions.csv) has headers but **no accepted background matches**. Database and release, dataset names, UUIDs and versions, geography and year, reference flows and amounts, source URLs, retrieval dates, and file hashes are unknown for every background input. No search queries, alternatives, accepted or rejected matches, proxy rationales, supplier links, or external dependencies are documented.
 
 It is unknown whether any proposed data are unit-process inventories, cumulative factors, or monetary estimates. No monetary sector, currency, price year, purchaser/basic-price basis, quantity, or price is recorded. These fields require an actual mapping table before dataset choices can be assessed.
 
@@ -56,11 +56,14 @@ Missing upstream providers and uncharacterized flows have not been assessed. The
 | [README.md](README.md) | Current study record and known gaps |
 | [readme-requirements.md](readme-requirements.md) | Reporting fields and specified mass targets |
 | [data/kettle-bom.csv](data/kettle-bom.csv) | Classroom finished-mass inventory, downloaded 2026-10-08; SHA-256 `89b76fbf59a6ab1f3c5825cc6052556b15e1d3e8ea7739121ccb656d00b68f13` |
+| [data/data-manifest.csv](data/data-manifest.csv) | Download URL, retrieval date and checksum for the available BOM |
+| [data/mapping-decisions.csv](data/mapping-decisions.csv) | Background-match columns; no matches have been accepted |
 | [scripts/validate_bom.R](scripts/validate_bom.R) | Checks CSV schema, positive masses, and both published subtotals |
+| [prompts_and_runs.md](prompts_and_runs.md) | Curated instructions, decisions and verified run status |
 
 The BOM was retrieved from the classroom page's `/classroom/kettle-bom.csv` download. To repeat the **BOM check only**, from the repository root run `Rscript scripts/validate_bom.R`; it should print 723.00 g kettle, 137.80 g packaging and 860.80 g packaged. This uses base R and was run with R 4.5.3 on Debian 13. There is no impact-analysis installation or execution command because this repository has no calculation code or dependency file. No generated impact report or figure is available to open.
 
-Account/API requirements, configuration variable names, data permissions, retrieval/caching procedure, and random seeds are unknown. Restricted background data should be obtained through permitted access rather than committed as database dumps. A reproducible run requires the permitted inputs or precise retrieval instructions, the model and dependency versions, exact commands, and expected output paths.
+The official TianGong CLI 0.1.27 was checked outside this repository; its `auth status --json` returned `login-required`. Its documented production workflow uses `tiangong-lca auth login` and browser authorization; no TianGong dataset was retrieved. The classroom page points to [USLCI release downloads](https://github.com/FLCAC-admin/uslci-content/blob/dev/docs/release_info/release-downloads.md) and the [Federal LCA Commons API guide](https://www.lcacommons.gov/lca-commons-api-guide); the latter says automated API use needs a user-provided data.gov API key. No application configuration variable or key is stored here. Data permissions, retrieval/caching procedure for background data, and random seeds remain unknown. Restricted data should be obtained through permitted access rather than committed as database dumps. A reproducible impact run requires the permitted inputs or precise retrieval instructions, the model and dependency versions, exact commands, and expected output paths.
 
 ## 7. Results, checks and interpretation
 
@@ -74,7 +77,7 @@ Uncertainty and sensitivity were **not calculated in this repository** because n
 
 ## 9. Codex and human decisions
 
-Codex prepared this repository inspection and README on **2026-10-08 (Korea time)**. The exact model identifier and settings shown to the student are not recorded in the repository and remain unknown. The consequential instruction was to document the actual repository without inventing missing results; see [readme-requirements.md](readme-requirements.md). No curated prompt/decision log is present.
+Codex prepared this repository inspection and README on **2026-10-08 (Korea time)**. The exact model identifier and settings shown to the student are not recorded in the repository and remain unknown. The consequential instruction was to document the actual repository without inventing missing results; see [readme-requirements.md](readme-requirements.md) and the curated [prompt/decision log](prompts_and_runs.md).
 
 The requirements specify the study object and mass targets. Student decisions, accepted or rejected dataset matches, manual edits, error corrections, other assistance, and independently checked outputs are unknown. None are attributed without evidence.
 
@@ -86,7 +89,7 @@ No preserved independent output or associated Git tag is present. No revision is
 
 1. Public alias, actual study date, goal, comparison, run ID, and any independent-run tag.
 2. Any correction to the classroom BOM and decisions about material grades, yield, electricity, transport, and scrap assumptions.
-3. Permitted data or retrieval instructions; complete dataset mapping, selection log, model, method, and provider-closure checks.
+3. TianGong browser authorization or permitted process exports; USLCI records; complete dataset mapping, selection log, model, method, and provider-closure checks.
 4. Actual outputs, figures, validation checks, uncertainty analysis, and curated prompt/decision log, if they exist.
 
 Until those items are available, numerical LCA results and reproducibility remain unverified.
