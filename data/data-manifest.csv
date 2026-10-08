@@ -1,2 +1,3 @@
 path,source_url,retrieval_date_utc,sha256,description,redistribution_note
 data/kettle-bom.csv,https://tiangong-lca-decision-lab.ecodino73.chatgpt.site/classroom/kettle-bom.csv,2026-10-08,89b76fbf59a6ab1f3c5825cc6052556b15e1d3e8ea7739121ccb656d00b68f13,Classroom finished-mass BOM,Public classroom download; underlying study citation on classroom page
+,https://publica-rest.fraunhofer.de/server/api/core/bitstreams/3df3f4d6-3717-4261-99e3-a232323111d6/content,2026-10-08,413980bdfdd02e05bd10e13b507b298bddc99f527adc207e8f7c6e8898532152,European Commission kettle study Task 1 final report PDF,Linked source document; PDF not committed
