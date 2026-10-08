@@ -1,1 +1,92 @@
-Research code and data analysis repository.
+# BC1 1 L electric kettle LCA — study record
+
+This repository currently contains this README, the [reporting requirements](readme-requirements.md), and the [published classroom BOM](data/kettle-bom.csv). It contains no background-data matches, impact calculation code, decision log, or calculated impact results. The [LCA decision lab](https://tiangong-lca-decision-lab.ecodino73.chatgpt.site/) is the classroom brief and source of the BOM, **not** a generated LCA result.
+
+## 1. Study identity and purpose
+
+| Item | Current record |
+| --- | --- |
+| Title | BC1 1 L plastic electric kettle LCA (working title from the requirements) |
+| Public student/group alias | Unknown; none is recorded |
+| Repository | https://github.com/shpark857-snu/R |
+| Run ID and study date | Unknown; no run is recorded |
+| Goal | Assess one manufactured and packaged kettle at the factory gate, as specified in the [requirements](readme-requirements.md) |
+| Intended comparison | Unknown; no baseline or alternative is documented |
+| Independent/revised run and Git tag | Unknown; no run output or tag is recorded |
+
+Enter the final 40-character commit SHA in the submission form after committing. It cannot be embedded in this README before that commit exists.
+
+## 2. Product, declared unit and system boundary
+
+The specified declared unit is **one manufactured and packaged BC1 1 L plastic electric kettle at the factory gate**. The [classroom BOM](data/kettle-bom.csv) gives **723 g** for the product and **137.8 g** for packaging. Their sum is **860.8 g**, or **0.8608 kg**, per packaged kettle; the CSV line items reproduce both subtotals. The classroom page cites *EU Electric Kettles preparatory study* (2020), Task 4, Tables 4-3, 4-4 and 4-8 (printed pp. 26, 27 and 30). BC1 is a representative base case, not a named commercial product. The cited study itself has not been independently checked here, and the BOM gives finished masses but not polymer grades, yields or assembly electricity.
+
+The intended boundary is factory gate. Included material, conversion, assembly, packaging, and transport processes have not been documented. Exclusions, cut-offs, geography, and reference year are unknown. No use-phase or end-of-life extension is recorded; any future extension should be reported separately from the common factory-gate result.
+
+## 3. Foreground inventory and quantitative assumptions
+
+| Parameter/input | Value | Unit | Evidence/source | Status |
+| --- | ---: | --- | --- | --- |
+| Product finished mass | 723 | g/kettle | Sum of [BOM](data/kettle-bom.csv) kettle rows | Sourced; CSV sum checked |
+| Packaging finished mass | 137.8 | g/kettle | Sum of [BOM](data/kettle-bom.csv) packaging rows | Sourced; CSV sum checked |
+| Combined finished mass | 860.8 | g/packaged kettle | Sum of the two BOM subtotals | Calculated; CSV sum checked |
+| Component material quantities | See [12 BOM rows](data/kettle-bom.csv) | g/kettle | Classroom BOM, citing 2020 preparatory study | Sourced finished masses; grades not verified |
+| Losses, yields, purchased quantities | Unknown | — | No process inventory | Not available |
+| Conversion services, assembly electricity | Unknown | — | No process inventory | Not available |
+| Transport and scrap | Unknown | — | No process inventory | Not available |
+| Prices for monetary estimates | Not applicable currently | — | No monetary estimate is documented | Not used in a recorded calculation |
+
+The 12 finished-mass inputs are stainless steel 186 g, brass 20.25 g, copper 15 g, PP 350.25 g, PVC 43.5 g, nylon 49.5 g, POM 9.75 g, PC 6.75 g, ABS 30 g, silicone 12 g, LDPE foil 6.3 g and cardboard 131.5 g per kettle; see the CSV for part categories. Finished-mass-to-purchase conversions and reference-flow normalization cannot be checked without yields and provider reference flows. Aside from the gram-to-kilogram conversion above, no inventory unit conversion is recorded. Background conversion and energy burdens are unknown, so potential double counting cannot yet be evaluated.
+
+## 4. Background data and matching decisions
+
+No background dataset mapping or data manifest exists in the repository. Database and release, dataset names, UUIDs and versions, geography and year, reference flows and amounts, source URLs, retrieval dates, and file hashes are unknown for every input. No search queries, alternatives, accepted or rejected matches, proxy rationales, supplier links, or external dependencies are documented.
+
+It is unknown whether any proposed data are unit-process inventories, cumulative factors, or monetary estimates. No monetary sector, currency, price year, purchaser/basic-price basis, quantity, or price is recorded. These fields require an actual mapping table before dataset choices can be assessed.
+
+## 5. Calculation and impact-assessment methods
+
+No calculation code or method record is present. The repository does not establish whether a process-matrix calculation (such as A s = f; g = B s; h = C g) or another algorithm was used. Software and solver for an actual run, process scaling, provider linking, allocation/system model, recycling and scrap treatment, credits, characterization method and version, time horizon, biogenic-carbon treatment, and flow matching are unknown.
+
+Missing upstream providers and uncharacterized flows have not been assessed. Their contributions must not be silently assigned zero.
+
+## 6. How to reproduce the analysis
+
+| Path | Purpose |
+| --- | --- |
+| [README.md](README.md) | Current study record and known gaps |
+| [readme-requirements.md](readme-requirements.md) | Reporting fields and specified mass targets |
+| [data/kettle-bom.csv](data/kettle-bom.csv) | Classroom finished-mass inventory, downloaded 2026-10-08; SHA-256 `89b76fbf59a6ab1f3c5825cc6052556b15e1d3e8ea7739121ccb656d00b68f13` |
+| [scripts/validate_bom.R](scripts/validate_bom.R) | Checks CSV schema, positive masses, and both published subtotals |
+
+The BOM was retrieved from the classroom page's `/classroom/kettle-bom.csv` download. To repeat the **BOM check only**, from the repository root run `Rscript scripts/validate_bom.R`; it should print 723.00 g kettle, 137.80 g packaging and 860.80 g packaged. This uses base R and was run with R 4.5.3 on Debian 13. There is no impact-analysis installation or execution command because this repository has no calculation code or dependency file. No generated impact report or figure is available to open.
+
+Account/API requirements, configuration variable names, data permissions, retrieval/caching procedure, and random seeds are unknown. Restricted background data should be obtained through permitted access rather than committed as database dumps. A reproducible run requires the permitted inputs or precise retrieval instructions, the model and dependency versions, exact commands, and expected output paths.
+
+## 7. Results, checks and interpretation
+
+**Calculation status: not calculated in this repository.** A GWP100 total in kg CO2-eq per packaged kettle, contribution breakdown, top three contributors, baseline/scenario or database/method labels, output files, and figures are unavailable. The BOM line items sum to 723 g product and 137.8 g packaging; this checks the supplied CSV arithmetic, not process mass balance.
+
+The BOM mass subtotals passed. Unit consistency beyond this CSV, process mass/balance, supplier closure, contribution sum, and double-counting checks have not been run. There are no recorded impact-model passes or failures. Impact drivers and comparison conclusions are unsupported while the model and results are absent; missing contributions are not numerical zeroes.
+
+## 8. Uncertainty and sensitivity
+
+Uncertainty and sensitivity were **not calculated in this repository** because no executable inventory or numerical result exists. Parameters, distributions/ranges and their evidence, correlations, simulation method, draw count, seed, convergence check, mean, median, and P05/P95 are unavailable. Parameter uncertainty, provider/method scenarios, and variation among repeated AI runs cannot be separated without recorded runs. No conditional central 90% interval is reported.
+
+## 9. Codex and human decisions
+
+Codex prepared this repository inspection and README on **2026-10-08 (Korea time)**. The exact model identifier and settings shown to the student are not recorded in the repository and remain unknown. The consequential instruction was to document the actual repository without inventing missing results; see [readme-requirements.md](readme-requirements.md). No curated prompt/decision log is present.
+
+The requirements specify the study object and mass targets. Student decisions, accepted or rejected dataset matches, manual edits, error corrections, other assistance, and independently checked outputs are unknown. None are attributed without evidence.
+
+## 10. Independent and revised runs
+
+No preserved independent output or associated Git tag is present. No revision is documented, so prior commit, changed decision, predicted effect, original and revised results, absolute/percentage difference, and explanation are **not applicable to the current record**. If a revised run is made later, preserve the independent result, identify one changed decision, and distinguish a corrected error from a defensible modeling alternative.
+
+## Information needed before final submission
+
+1. Public alias, actual study date, goal, comparison, run ID, and any independent-run tag.
+2. Any correction to the classroom BOM and decisions about material grades, yield, electricity, transport, and scrap assumptions.
+3. Permitted data or retrieval instructions; complete dataset mapping, selection log, model, method, and provider-closure checks.
+4. Actual outputs, figures, validation checks, uncertainty analysis, and curated prompt/decision log, if they exist.
+
+Until those items are available, numerical LCA results and reproducibility remain unverified.
